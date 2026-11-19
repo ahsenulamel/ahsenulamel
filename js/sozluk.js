@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+(function () {
+
+    function baslat() {
 
     /* AYARLAR */
 
@@ -255,4 +257,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     sozlukYukle();
 
-});
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", baslat);
+    } else {
+        baslat();
+    }
+
+})();

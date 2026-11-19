@@ -259,10 +259,20 @@
 
     }
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", baslat);
-    } else {
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+        try {
+            baslat();
+        } catch (hata) {
+            console.error("Sözlük başlatma hatası:", hata);
+        }
+    });
+} else {
+    try {
         baslat();
+    } catch (hata) {
+        console.error("Sözlük başlatma hatası:", hata);
     }
+}
 
 })();

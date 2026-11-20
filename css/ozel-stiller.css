@@ -1,0 +1,338 @@
+/* **************Ek CSS'ler*************** */
+
+
+/* Butonları yeniden düzenleme */
+.btn {
+ background:#176b55;
+ color:#f1efe9;
+ border:1px solid #176b55;
+}
+.btn-outline {
+ border:1px solid #e93f39;
+ color:#e93f39;
+}
+.btn-outline:hover {
+ background:#e93f39;
+ color:#f1efe9;
+}
+
+
+/* Yumuşak kaydırma */
+html {  scroll-behavior: smooth; }
+[id^="dipnot-"],[id^="metin-"] {  scroll-margin-top: 150px; }
+li { margin-bottom: 2px; }
+
+blockquote {  font-size: 0.95em; }
+
+/* Yazı içi resimler – tefekkür uyumlu görünüm */
+.post-body img {  max-width: 95%;  height: auto;  display: block;  margin: 1px auto; }
+.post-body img:hover { filter: grayscale(0%) contrast(100%); }
+
+/* Mobil uyum */
+@media (max-width: 600px) {  
+	.post-body img {  max-width: 90%;  } 
+}
+header figure img {  display: none !important;}
+
+/* =================================================
+   Ahsen-ül Amel / kardeşlik   LOGO (FINAL)
+   ================================================= */
+
+/* Resimli logo tamamen kapat */
+header figure,header a figure,header img {  display: none !important; }
+
+/* Varsayılan başlık alanı */
+header .h {  display: inline-flex;  flex-direction: column;  align-items: center;  font-family: 'Satisfy', cursive;  font-size: 60px;  font-weight: 400;  color: #4a6b57;  line-height: 1;  margin: 0;  padding: 0; }
+
+/* Alt satır */
+header .h::after {  content: "kardeşlik";  font-family: 'Montserrat', sans-serif;  font-size: 15px;  font-weight: 400;  letter-spacing: 4px;  margin-top: 6px;  color: #444; }
+
+/* Header boşlukları */
+header {  padding-top: 20px;  padding-bottom: 20px; }
+
+/* Menü ile denge */
+nav {  margin-top: 0px; }
+
+/* Mobil */
+@media (max-width: 768px) {  
+	header .h {    font-size: 34px;  }
+  	header .h::after {    font-size: 12px;    letter-spacing: 3px;  }
+}
+header .h:hover {  opacity: 0.80; }
+
+
+/* ------------------Yayınların Stilleri----------------- */
+
+.giris { font:normal normal 17px 'Nunito', sans-serif; }
+.giris { text-align:justify; line-height:23px; text-indent:20px; }
+.gelisme { font:normal normal 17px 'Nunito', sans-serif; text-align:justify; line-height:23px; text-indent:20px; }
+.baslik { font:normal bold 18px 'Roboto', sans-serif; text-align:justify; line-height:25px; }
+.liste li { font:normal normal 17px 'Nunito', sans-serif; text-align:justify; line-height:25px; padding-left:5px; }
+.liste { line-height:25px; }
+.ust1 { font:normal normal 17px 'Nunito', sans-serif; text-align:justify; line-height:23px; text-align:center; }
+#besmele-ust { display:inline-block; border:0px solid; padding:0 20 0 10; font:normal normal 28px 'Scheherazade', sans-serif; color:#000000; text-align:center; direction: rtl; }
+#arapca-ust { display:inline-block; border:0px solid; padding:0 20 0 10; font:normal normal 26px 'Scheherazade', sans-serif; color:#CC0000; text-align:center; direction: rtl; }
+.ayır { padding:0 10 0 10; font:normal normal 20px 'Scheherazade', sans-serif; color:#000000; }
+#meal-ust { display:inline-block; border:0px solid; padding:0 20 0 10; font:italic normal 14px 'Nunito', serif; }
+#meal-ust2 { border:0px solid; padding:0 20 0 10; font:italic normal 14px 'Nunito', serif; }
+#meal-ust3 { border:0px solid; padding:0 20 0 10; font:italic normal 14px 'Nunito', serif; }
+#dipnotlar { border:1px solid #777878; border-width: 1 0 0 0; width:100%; }
+#dipnotlar li { font:normal normal 11px 'Nunito', sans-serif; text-align:justify; line-height:16px; padding-left:5px; }
+#etiket-bolum { border:1px solid; border-color:#777878; padding:0 0 0 0; width:100%; height:18px; background-color:#c5c7c6; }
+#etiket-baslik { background-color:#777878; width:30px; left:0px; height:18px; font:normal bold 16px 'PT+Sans', sans-serif; color:#ffffff; position:relative; text-align:center; }
+#etiketler {  left:40px; top:-20px; position:relative; font:normal bold 16px Arial, sans-serif; color:#999999; }
+.bosluk { height:17px; }
+#dipnot { color:#eb0000; font:normal bold 11px Arial; }
+#dip-scroll { color:#eb0000; }
+#baglanti { cursor:pointer; text-decoration:none; color:#00a4bd; font:normal normal 17.5px Arial; }
+#a-etiket { cursor:pointer; text-decoration:none; color:#999999; font:bold; }
+ol.kare { list-style-type:square; }
+ol.sayi { list-style-type:decimal; }
+ol.etiket { list-style-type:none; }
+#arapca-ic { font:normal normal 20px  'Scheherazade', sans-serif; color:#CC0000; }
+#arapca-dıs { font:normal normal 26px 'Scheherazade', sans-serif; color:#CC0000; }
+#arapca-dip { font:normal normal 12px  Arial, sans-serif; color:#000000; }
+.arapca-meal { width: 290px; display:inline-block; border:0px solid; padding:0 20 0 10; font:normal normal 14px 'Nunito', serif; }
+.arapca-text { width: 290px; display:inline-block; text-align:right; border:0px solid;  padding:0 20 0 0; }
+.arapca-table { border:1px solid; }
+#f1 { font:italic normal 12px 'Nunito', sans-serif; }
+#f2 { font-weight: bold; }
+#f3 { font-weight: bold; font-style: italic; }
+#f4 { font-style: italic; }
+#f5 { font-weight: bold; color:#e60000; }
+.yildiz { text-align:center }
+#not-title { font:normal bold 25px/32px "Lato" , sans-serif; color:#ffffff; }
+.not-title { border:1px Solid #ff6600; border-width:0 0 5 0; text-align:left; padding:0 0 0 0; border-style:solid; text-transform:uppercase; letter-spacing:1px; width:98%; background-color:#404040; }
+.line-2 { height:20px; border: 1px solid #000000; border-width: 2px 0px 2px 0px; padding: 5px 0; }
+#space { width:20px; opacity: 0; }
+
+/* ------------------Çalışmalarım / Kuran Dili----------------- */
+
+.alan1 li { font:normal normal 17px 'Nunito', sans-serif; text-align:justify; line-height:25px; padding-left:5px; }
+.alan1 { line-height:25px; border:1px dashed; border-color:#0a7a00; }
+.alan2 { font:normal normal 17px 'Nunito', sans-serif; text-align:justify; padding:0 5 5 10; }
+.alan2 { border:1px dashed; border-color:#fc0800; }
+.cember { list-style-type:circle; }
+#tab1 { border-collapse: collapse; }
+#th1 { width:100px; text-align:center; border:1px Solid; }
+#th2 { width:100px; text-align:center; border:0px Solid; }
+#th3 { width:497px; border:1px Solid; }
+#th4 { width:600px; border:1px Solid; }
+#td1 { height:40px; text-align:center; border:1px Solid; }
+#td2 { height:40px; border:1px Solid; font-weight:bold; }
+#td3 { border:0px Solid; }
+#td4 { height:20px; text-align:center; border:1px Solid; font-style: italic; }
+#arabca2 { font:normal normal 30px 'Scheherazade', sans-serif; color:#000000; direction: rtl; }
+#arabca { font:normal normal 30px 'Scheherazade', sans-serif; color:#CC0000; text-align:center; direction: rtl; }
+
+arapca {
+  font: normal normal 30px 'Scheherazade', sans-serif;
+  color: #CC0000;
+  text-align: center;
+  direction: rtl;
+  float: right;
+}
+
+ar {
+  font: normal normal 30px 'Scheherazade', sans-serif;
+  color: #CC0000;
+  text-align: center;
+  direction: rtl;
+}
+
+/* Arapça */
+.ust1 { font:normal normal 17px 'Nunito', sans-serif; text-align:justify; line-height:23px; text-align:center; }
+#besmele-ust { width: 500px; display:inline-block; border:0px solid; padding:0 20 0 10; font:normal normal 28px 'Scheherazade', sans-serif; color:#000000; text-align:center; direction: rtl; }
+#arapca-ust { width: 500px; display:inline-block; border:0px solid; padding:0 20 0 10; font:normal normal 26px 'Scheherazade', sans-serif; color:#CC0000; text-align:center; direction: rtl; }
+#meal-ust { width: 450px; display:inline-block; border:0px solid; padding:0 20 0 10; font:italic normal 14px 'Nunito', serif; }
+#arabca { font:normal normal 25px 'Scheherazade', sans-serif; color:#CC0000; text-align:center; direction: rtl; }
+
+.kelime {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 16px;
+  margin: 0 4px;
+  font-family: "Scheherazade", "Amiri", serif;
+  font-size: 24px;
+}
+
+.kelime::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  border-bottom: 2px solid #555;
+}
+
+.kelime::before {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #555;
+  white-space: nowrap;
+}
+
+/* Arapça Gramer Tür Etiketleri - Kur'an Dili Çalışmalarında */
+.fiil::before  { content: "fiil"; }
+.fiil1::before  { content: "fiil-i mazi"; }
+.fiilmazi::before  { content: "fiil-i mazi"; }
+.xfiilmazi::before  { content: "o. fiil-i mazi"; }
+.fiil2::before  { content: "fiil+fâil"; }
+.fiilfail::before  { content: "fiil+fâil"; }
+.fiilzamir::before  { content: "fiil+zamir"; }
+.fiil3::before  { content: "fiil+zamir"; }
+.fail::before  { content: "fâil"; }
+.meful::before { content: "mefûl"; }
+.cerr::before { content: "H.cerr"; }
+.carr::before { content: "cârr+mecrûr"; }
+.isim::before { content: "isim"; }
+.sıfat::before { content: "sıfat"; }
+.zamir::before { content: "zamir"; }
+.isimzamir::before { content: "isim+zamir"; }
+.mnzamir::before { content: "Mn.zamir"; }
+.mtzamir::before { content: "Mt.zamir"; }
+.izamir::before { content: "İ.zamiri"; }
+.yzamir::before { content: "Y.zamiri"; }
+.zarf::before { content: "zarf"; }
+.yzarf::before { content: "Y.zarfı"; }
+.zzarf::before { content: "Z.zarfı"; }
+.mzarf::before { content: "M.zarfı"; }
+.dzarf::before { content: "D.zarfı"; }
+.szarf::before { content: "S.zarfı"; }
+.zarfzamir::before { content: "zarf+zamir"; }
+.maleyh::before { content: "Mt.aleyh"; }
+.matuf::before { content: "matuf"; }
+.atıf::before { content: "atıf"; }
+.atıfmatuf::before { content: "atıf+matuf"; }
+.dua::before { content: "duaiye"; }
+.mubteda::before { content: "mübteda"; }
+.haber::before { content: "haber"; }
+.cumlehaber::before { content: "cümle haber"; }
+.scumlehaber::before { content: "Ş. cümle haber"; }
+.naibfail::before { content: "N. fail"; }
+.fiilmechul::before { content: "F. mechul"; }
+
+/* Yayın içinde basit, özel renklendirme için */
+cr { color:red; }
+
+/* Kelime üzerine gelindiğinde açıklama çıkarmak için <dic></dic> */
+dic {
+    cursor: pointer;
+    border-bottom: 1px dotted currentColor;
+}
+
+#dic-popup {
+    position: fixed;
+    z-index: 2147483647;
+
+    display: none;
+
+    max-width: 300px;
+    padding: 10px 13px;
+
+    background: #fff;
+    color: #222;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,.18);
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    pointer-events: none;
+
+}
+
+
+/* Yazdırma Sayfasını Özelleştirme */
+@media print {
+
+    /* 1. Her şeyi görünmez yap (display YOK) */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* 2. Sadece title post-body görünür */
+.entry-title,
+.post-body.entry-content,
+  .post-body.entry-content * {
+    visibility: visible !important;
+  }
+
+  /* 3. title Post-body'yi sayfaya taşı */
+  .entry-title,
+  .post-body.entry-content {
+    position: absolute !important;
+    top: 10px;
+    left: 0;
+    width: 100% !important;
+    margin: 10 !important;
+    padding: 0 !important;
+  }
+}
+
+.post-touls {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: -10px;
+  padding: -8px 0;
+  border-top: 1px solid rgba(0,0,0,.08);
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  font-size: 13px;
+}
+.toul {
+  margin: 6px 0 12px !important;
+  padding: 0px 0;
+}
+
+.post-touls .toul {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  opacity: .7;
+  transition: .2s;
+  user-select: none;
+}
+
+.post-touls .toul:hover {
+  opacity: 1;
+}
+
+.post-touls svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+@media print {
+  .post-touls {
+    display: none !important;
+  }
+}
+
+/* Youtube Video Embed */
+
+.youtube-video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  margin: 30px 0;
+}
+
+.youtube-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

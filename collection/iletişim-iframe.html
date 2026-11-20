@@ -1,0 +1,122 @@
+<div class="contact-layout">
+
+  <div class="contact-form-wrap">
+    <div class="iframe-box">
+      <iframe class="ifr"
+        src="https://admin-ahsenulamel.blogspot.com/p/iletisim.html"
+        scrolling="no">
+      </iframe>
+    </div>
+  </div>
+
+  <div class="contact-note">
+    <h3>İletişim Hakkında</h3>
+    <p>Buraya yazılan her satır, bir insanın kalbinden çıkıp başka bir kalbe ulaşır.</p>
+    <p>Kısa, açık ve meseleye odaklı bir dil; konuşmayı bereketli kılar.</p>
+    <p>Her mesaja hemen dönülemeyebilir; fakat her mesaj dikkatle okunur.</p>
+  </div>
+
+</div>
+
+<style>
+
+.contact-layout {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* iframe kırpma kutusu */
+.iframe-box {
+  width: 530px;
+  height: 380px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 16px;
+}
+
+/* iframe – masaüstü */
+.ifr {
+  position: absolute;
+  top: -230px;
+  left: -80px;
+  width: 1000px;
+  height: 1000px;
+  border: none;
+}
+
+/* Metin */
+.contact-note {
+  max-width: 280px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.7;
+}
+
+.contact-note h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #2f3e34;
+}
+  
+/* ===================== */
+/* TABLET */
+/* ===================== */
+@media (max-width: 1000px) {
+
+  .contact-layout {
+    flex-direction: column;
+  }
+
+  .iframe-box {
+    width: 420px;
+    height: 320px;
+  }
+
+  .ifr {
+    width: 1000px;          /* içerik genişliği aynı */
+    height: 1000px;
+    top: -170px;
+    left: -70px;
+
+    transform: scale(0.8); /* 👈 KRİTİK NOKTA */
+    transform-origin: top left;
+  }
+
+  .contact-note {
+    max-width: 100%;
+  }
+}
+
+/* ===================== */
+/* MOBİL */
+/* ===================== */
+@media (max-width: 520px) {
+
+  .contact-layout {
+    flex-direction: column;
+  }
+
+  .iframe-box {
+    width: 420px;
+    height: 250px;
+  }
+
+  .ifr {
+    width: 1000px;          /* içerik genişliği aynı */
+    height: 1000px;
+    top: -130px;
+    left: -100px;
+
+    transform: scale(0.65); /* 👈 KRİTİK NOKTA */
+    transform-origin: top left;
+  }
+
+  .contact-note {
+    max-width: 100%;
+  }
+}
+  
+</style>

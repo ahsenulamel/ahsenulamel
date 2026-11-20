@@ -7,7 +7,7 @@
       textSize.innerHTML = `
         <label aria-label="Yazdır" class="size-label round-l pointer f post-print" style="cursor:pointer;" title="Yazdır">
           <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M7 8V3h10v5H7Zm-2 9H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5h-1v-2h1v-5H4v5h1v2Zm2 4v-7h10v7H7Zm2-2h6v-3H9v3Zm8-6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/>
+            <path d='M7 8V3h10v5H7Zm-2 9H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v-2h1v-5H4v5h1v2Zm2 4v-7h10v7H7Zm2-2h6v-3H9v3Zm8-6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z'/>
           </svg>
         </label>
       `;

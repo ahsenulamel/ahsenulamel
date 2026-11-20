@@ -1,12 +1,13 @@
+
 (function () {
 
     function baslat() {
 
     /* AYARLAR */
 
-    var sozlukURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQtyP_v_c7y7ku22HKqly2llv83B2bY894PYQwnFMVocZ3mb40EajJrpC-HezIbUg5YHbHuKjxBOUB2/pub?gid=0&single=true&output=csv";
+    var sozlukURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSkcEcw1y0bM3GCZtlK8Hq4HnvGR_mYyQ5dkFhTj2avYz1bzmc0nYvrGe0OfhkbgGA4woVsXWZnWRKy/pub?gid=0&single=true&output=csv";
 
-    var cacheKey = "ahsen_sozluk_cache_v1";
+    var cacheKey = "ahsen_sozluk_cache_v2";
     var cacheSuresi = 24 * 60 * 60 * 1000;
 
     var sozluk = {};
@@ -175,10 +176,12 @@
                     throw new Error("Sözlük indirilemedi.");
                 }
 
-                return response.text();
+                return response.arrayBuffer();
 
             })
-            .then(function (metin) {
+            .then(function (buffer) {
+
+                var metin = new TextDecoder("utf-8").decode(buffer);
 
                 var yeniSozluk = sozlukOlustur(metin);
 
@@ -259,20 +262,20 @@
 
     }
 
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () {
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", function () {
+            try {
+                baslat();
+            } catch (hata) {
+                console.error("Sözlük başlatma hatası:", hata);
+            }
+        });
+    } else {
         try {
             baslat();
         } catch (hata) {
             console.error("Sözlük başlatma hatası:", hata);
         }
-    });
-} else {
-    try {
-        baslat();
-    } catch (hata) {
-        console.error("Sözlük başlatma hatası:", hata);
     }
-}
 
 })();

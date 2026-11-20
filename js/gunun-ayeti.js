@@ -1,211 +1,158 @@
 
 (function () {
-
-    function baslat() {
-
-        /* AYARLAR */
-
-        var ayetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSkcEcw1y0bM3GCZtlK8Hq4HnvGR_mYyQ5dkFhTj2avYz1bzmc0nYvrGe0OfhkbgGA4woVsXWZnWRKy/pub?gid=1274198704&single=true&output=csv";
-
-
-        /* CSV OKUYUCU */
-
-        function csvOku(metin) {
-
-            var satirlar = [];
-            var satir = [];
-            var hucre = "";
-            var tirnak = false;
-
-            if (metin.charCodeAt(0) === 65279) {
-                metin = metin.substring(1);
-            }
-
-            for (var i = 0; i < metin.length; i++) {
-
-                var karakter = metin[i];
-                var sonraki = metin[i + 1];
-
-                if (karakter === '"') {
-
-                    if (tirnak && sonraki === '"') {
-                        hucre += '"';
-                        i++;
-                    } else {
-                        tirnak = !tirnak;
-                    }
-
-                } else if (karakter === "," && !tirnak) {
-
-                    satir.push(hucre);
-                    hucre = "";
-
-                } else if (
-                    (karakter === "\n" || karakter === "\r") &&
-                    !tirnak
-                ) {
-
-                    if (karakter === "\r" && sonraki === "\n") {
-                        i++;
-                    }
-
-                    satir.push(hucre);
-                    satirlar.push(satir);
-
-                    satir = [];
-                    hucre = "";
-
-                } else {
-
-                    hucre += karakter;
-
-                }
-            }
-
-            if (hucre !== "" || satir.length > 0) {
-                satir.push(hucre);
-                satirlar.push(satir);
-            }
-
-            return satirlar;
-        }
-
-
-        /* AYETLERİ OLUŞTUR */
-
-        function ayetleriOlustur(metin) {
-
-            var satirlar = csvOku(metin);
-
-            if (!satirlar.length) {
-                throw new Error("Ayet verisi boş.");
-            }
-
-            var basliklar = satirlar[0].map(function (baslik) {
-                return baslik.trim().toLocaleLowerCase("tr-TR");
-            });
-
-            var siraIndex = basliklar.indexOf("sıra");
-            var metinIndex = basliklar.indexOf("metin");
-            var kaynakIndex = basliklar.indexOf("kaynak");
-
-            if (
-                siraIndex === -1 ||
-                metinIndex === -1 ||
-                kaynakIndex === -1
-            ) {
-                throw new Error("Ayet sütunları bulunamadı.");
-            }
-
-            var ayetler = [];
-
-            for (var i = 1; i < satirlar.length; i++) {
-
-                var sira = (satirlar[i][siraIndex] || "").trim();
-                var ayetMetni = (satirlar[i][metinIndex] || "").trim();
-                var kaynak = (satirlar[i][kaynakIndex] || "").trim();
-
-                if (ayetMetni && kaynak) {
-
-                    ayetler.push({
-                        sira: Number(sira),
-                        metin: ayetMetni,
-                        kaynak: kaynak
-                    });
-
-                }
-            }
-
-            ayetler.sort(function (a, b) {
-                return a.sira - b.sira;
-            });
-
-            if (!ayetler.length) {
-                throw new Error("Gösterilecek ayet bulunamadı.");
-            }
-
-            return ayetler;
-        }
-
-
-        /* GÜNÜN AYETİNİ SEÇ */
-
-        function gununAyetiniSec(ayetler) {
-
-            var bugun = new Date();
-
-            var yilBasi = new Date(bugun.getFullYear(), 0, 0);
-
-            var gunNo = Math.floor(
-                (bugun - yilBasi) / 86400000
-            );
-
-            var index = (gunNo - 1) % ayetler.length;
-
-            return ayetler[index];
-        }
-
-
-        /* VERİYİ YÜKLE */
-
-        fetch(ayetURL)
-            .then(function (response) {
-
-                if (!response.ok) {
-                    throw new Error("Ayet verisi indirilemedi.");
-                }
-
-                return response.arrayBuffer();
-
-            })
-            .then(function (buffer) {
-
-                var metin = new TextDecoder("utf-8").decode(buffer);
-
-                var ayetler = ayetleriOlustur(metin);
-
-                var secilenAyet = gununAyetiniSec(ayetler);
-
-                var metinAlani = document.getElementById("ignielAyetText");
-                var kaynakAlani = document.getElementById("ignielAyetRef");
-
-                if (!metinAlani || !kaynakAlani) {
-                    return;
-                }
-
-                metinAlani.textContent = secilenAyet.metin;
-                kaynakAlani.textContent = secilenAyet.kaynak;
-
-            })
-            .catch(function (hata) {
-
-                console.error("Günün ayeti yükleme hatası:", hata);
-
-            });
-
+  "use strict";
+
+  const CSV_URL =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSkcEcw1y0bM3GCZtlK8Hq4HnvGR_mYyQ5dkFhTj2avYz1bzmc0nYvrGe0OfhkbgGA4woVsXWZnWRKy/pub?gid=1274198704&single=true&output=csv";
+
+  const CACHE_KEY = "ahsen_ayet_cache_v1";
+  const CACHE_TIME = 24 * 60 * 60 * 1000;
+
+  function csvParse(text) {
+    const rows = [];
+    let row = [];
+    let cell = "";
+    let quoted = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+      const next = text[i + 1];
+
+      if (char === '"' && quoted && next === '"') {
+        cell += '"';
+        i++;
+      } else if (char === '"') {
+        quoted = !quoted;
+      } else if (char === "," && !quoted) {
+        row.push(cell);
+        cell = "";
+      } else if ((char === "\n" || char === "\r") && !quoted) {
+        if (char === "\r" && next === "\n") i++;
+        row.push(cell);
+        if (row.some(value => value.trim() !== "")) rows.push(row);
+        row = [];
+        cell = "";
+      } else {
+        cell += char;
+      }
     }
 
+    row.push(cell);
+    if (row.some(value => value.trim() !== "")) rows.push(row);
 
-    /* BAŞLAT */
+    return rows;
+  }
 
-    if (document.readyState === "loading") {
+  function parseAyetler(csv) {
+    const rows = csvParse(csv.replace(/^\uFEFF/, ""));
+    if (rows.length < 2) throw new Error("Ayet verisi bulunamadı.");
 
-        document.addEventListener("DOMContentLoaded", function () {
-            try {
-                baslat();
-            } catch (hata) {
-                console.error("Günün ayeti başlatma hatası:", hata);
-            }
-        });
+    const headers = rows[0].map(h => h.trim().toLowerCase());
 
-    } else {
+    const siraIndex = headers.indexOf("sıra");
+    const metinIndex = headers.indexOf("metin");
+    const kaynakIndex = headers.indexOf("kaynak");
 
-        try {
-            baslat();
-        } catch (hata) {
-            console.error("Günün ayeti başlatma hatası:", hata);
-        }
-
+    if (siraIndex < 0 || metinIndex < 0 || kaynakIndex < 0) {
+      throw new Error("Ayet CSV sütunları eksik.");
     }
+
+    return rows.slice(1)
+      .map(row => ({
+        sira: Number(row[siraIndex]),
+        metin: (row[metinIndex] || "").trim(),
+        kaynak: (row[kaynakIndex] || "").trim()
+      }))
+      .filter(item => item.metin && item.kaynak)
+      .sort((a, b) => a.sira - b.sira);
+  }
+
+  function getCache() {
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (!cached) return null;
+
+      const data = JSON.parse(cached);
+
+      if (
+        !data.time ||
+        !Array.isArray(data.ayetler) ||
+        !data.ayetler.length
+      ) return null;
+
+      return data;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function saveCache(ayetler) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({
+        time: Date.now(),
+        ayetler: ayetler
+      }));
+    } catch (error) {
+      // Önbellek kaydedilemese de uygulama çalışmaya devam eder.
+    }
+  }
+
+  async function getAyetler() {
+    const cached = getCache();
+    const cacheValid =
+      cached && Date.now() - cached.time < CACHE_TIME;
+
+    if (cacheValid) return cached.ayetler;
+
+    try {
+      const response = await fetch(CSV_URL, { cache: "no-store" });
+      if (!response.ok) throw new Error("Ayet verisi alınamadı.");
+
+      const buffer = await response.arrayBuffer();
+      const csv = new TextDecoder("utf-8").decode(buffer);
+      const ayetler = parseAyetler(csv);
+
+      if (!ayetler.length) throw new Error("Ayet listesi boş.");
+
+      saveCache(ayetler);
+      return ayetler;
+
+    } catch (error) {
+      if (cached && cached.ayetler.length) return cached.ayetler;
+      throw error;
+    }
+  }
+
+  function gununAyetiniGoster(ayetler) {
+    const textElement = document.getElementById("ignielAyetText");
+    const refElement = document.getElementById("ignielAyetRef");
+
+    if (!textElement || !refElement || !ayetler.length) return;
+
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 0);
+    const dayNo = Math.floor((now - start) / 86400000);
+    const index = (dayNo - 1) % ayetler.length;
+
+    const secilenAyet = ayetler[index];
+
+    textElement.textContent = secilenAyet.metin;
+    refElement.textContent = secilenAyet.kaynak;
+  }
+
+  async function init() {
+    try {
+      const ayetler = await getAyetler();
+      gununAyetiniGoster(ayetler);
+    } catch (error) {
+      console.error("Günün Ayeti yüklenemedi:", error);
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 
 })();

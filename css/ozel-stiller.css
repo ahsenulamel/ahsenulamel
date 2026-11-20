@@ -34,7 +34,7 @@ blockquote {  font-size: 0.95em; }
 }
 header figure img {  display: none !important;}
 
-/* --------------LOGO---------------- */
+/* --------------LOGO----------------- */
 
 /* Resimli logo tamamen kapat */
 header figure,header a figure,header img {  display: none !important; }

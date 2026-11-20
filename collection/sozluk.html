@@ -1,0 +1,71 @@
+<!-- Sözlük -->
+  
+<script id='sozluk-data' type='application/json'>
+{
+  &quot;tenzil&quot;: &quot;İndirme, peyderpey indirme anlamına gelir.&quot;
+}
+</script>
+
+<script>
+document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
+
+    /* -----------------------------    JSON SÖZLÜĞÜ    ----------------------------- */
+
+    var veri = document.getElementById(&quot;sozluk-data&quot;);
+    if (!veri) {
+        return;
+    }
+    var sozluk;
+    try {
+        sozluk = JSON.parse(veri.textContent);
+    } catch (e) {
+        return;
+    }
+
+
+
+    /* -----------------------------       AÇIKLAMA KUTUSU    ----------------------------- */
+
+    var kutu = document.createElement(&quot;div&quot;);
+    kutu.id = &quot;dic-popup&quot;;
+    document.body.appendChild(kutu);
+
+    /* -----------------------------       FARE HAREKETİ    ----------------------------- */
+
+    document.addEventListener(&quot;mouseover&quot;, function (event) {
+        var hedef = event.target.closest(&quot;dic&quot;);
+        if (!hedef) {
+            return;
+        }
+        var kelime = hedef.textContent.trim();
+        if (!sozluk[kelime]) {
+            return;
+        }
+        kutu.textContent = sozluk[kelime];
+        kutu.style.display = &quot;block&quot;;
+        var x = event.clientX + 12;
+        var y = event.clientY + 15;
+        var w = kutu.offsetWidth;
+        var h = kutu.offsetHeight;
+        if (x + w &gt; window.innerWidth - 10) {
+            x = window.innerWidth - w - 10;
+        }
+        if (y + h &gt; window.innerHeight - 10) {
+            y = event.clientY - h - 15;
+        }
+        kutu.style.left = x + &quot;px&quot;;
+        kutu.style.top = y + &quot;px&quot;;
+    });
+
+
+    /* -----------------------------       FARE KELİMEDEN AYRILDI    ----------------------------- */
+
+    document.addEventListener(&quot;mouseout&quot;, function (event) {
+        var hedef = event.target.closest(&quot;dic&quot;);
+        if (!hedef) {
+            return;
+        }
+        kutu.style.display = &quot;none&quot;;
+    });
+});
+</script>

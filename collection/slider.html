@@ -1,0 +1,176 @@
+<style>
+.der-slider{
+position:relative;
+overflow:hidden;
+width:100%;
+}
+
+.der-slider-track{
+display:flex;
+gap:20px;
+transition:transform .45s ease;
+}
+
+.der-slide{
+flex:0 0 calc((100% - 40px)/3);
+list-style:none;
+}
+
+.der-slide img{
+width:95%;
+height:120px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.der-title{
+display:block;
+margin-top:10px;
+font-weight:600;
+font-size:15px;
+text-decoration:none;
+color:#222;
+line-height:1.3;
+}
+
+.der-title:hover{
+color:#ed783c;
+}
+
+/* oklar */
+
+.der-btn{
+position:absolute;
+top:20%;
+width:36px;
+height:36px;
+border:none;
+border-radius:50%;
+background:#ed783c;
+color:#fff;
+font-size:18px;
+cursor:pointer;
+z-index:10;
+
+display:flex;
+align-items:center;
+justify-content:center;
+line-height:1;
+padding:0;
+}
+
+.der-prev{left:0px;}
+.der-next{right:0px;}
+</style>
+
+
+
+<div class="der-slider" id="derSlider">
+
+<button class="der-btn der-prev">&#10094;</button>
+<button class="der-btn der-next">&#10095;</button>
+
+<ul class="der-slider-track">
+
+<li class="der-slide">
+<a href="https://ahsenulamel.blogspot.com/2015/02/kandil-geceleri-kadir-gecesi.html">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjR70rEJobvYcMaM8O-4q8tqeVTbvkaRC2b-iCgClDoMpQKTOOn6leuWn7QOJGU1ywHE1T2nnj16kwYmk1nGHypwtj5WL-nkLcK_EYyvx4rqbqQQD2c6TfYq9mrZn41DqjxW-ClvNcut5FfouE8sLoMnXhVBdE40OxwJgiXDLIIeXjcroYiKLyyvvSnUVI/s1600/kadir-gecesi.png" />
+</a>
+<a class="der-title" href="https://ahsenulamel.blogspot.com/2015/02/kandil-geceleri-kadir-gecesi.html">KADİR GECESİ - MELEKLERİN ŞAHİT OLDUĞU GECE</a>
+</li>
+
+<li class="der-slide">
+<a href="https://ahsenulamel.blogspot.com/2025/08/rabta-i-mevt-ve-kardesligimiz.html">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgb_8qLn6lDMKt-2_uHEL-FJF5y7OQOjyCuPB4ifufS2tWjph6Ej8AyldVEyJv6Nw26vpWt4lXObXUV2CCK7XtZ8nhZlcI6vRyMpeJd9qhOEE4S2wfPrkRaJuipgw5IZu5gqmnKFVX1jlxvchB__pyzGY3qdpFBfenksWJ4WziyojDRbIX9uiEy5AHAY_Y/s1600/mezar-kabir.png" />
+</a>
+<a class="der-title" href="https://ahsenulamel.blogspot.com/2025/08/rabta-i-mevt-ve-kardesligimiz.html">RABITA-İ MEVT ve KARDEŞLİĞİMİZ</a>
+</li>
+
+<li class="der-slide">
+<a href="https://ahsenulamel.blogspot.com/2025/08/rabbimin-kulu.html">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvzpqzg6Pvi1lnUX8E8y7AyUX1g51jCu9aOjt8M_vMPR0ZF6Nqql_3ho2AlqK5O8rhJbwOsI5sCzRCtFDjNa5MlYXzSuJnc7OZJFP0cduVc4-v9-rONxmyU4jUAXSnyXbvZJYP8epfRbM4r5gp9-jV2GL_0I2FRByQyTTdCxYlYMjHU6u8MeHgsMIbDNk/s1600/insanlar.png" />
+</a>
+<a class="der-title" href="https://ahsenulamel.blogspot.com/2025/08/rabbimin-kulu.html">RABBİM'İN KULU</a>
+</li>
+
+<li class="der-slide">
+<a href="https://ahsenulamel.blogspot.com/2025/05/yasin-suresi-koy-halk-ve-elciler-kssas.html">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgW7jFzCmTWeJv1uoxJPhksUyEDkppX4SsHlXflBzgaebf5l_PciCXlx6lc6ZmF6Y7DbCwrTUnTr_8xu2zNin6ahTAcLQ8DkTGr0He1syhQmK4htUz0o2QMPRA0ykv0t-mI5KkdhJ7zIucIC7-rcrxwdtPOAG_O948Y0YycSFEden8nH6JmgcH58dRAJXo/s1600/el%C3%A7i.png" />
+</a>
+<a class="der-title" href="https://ahsenulamel.blogspot.com/2025/05/yasin-suresi-koy-halk-ve-elciler-kssas.html">YASİN SURESİ 13...27 - KÖY HALKI ve ELÇİLER KISSASI</a>
+</li>
+
+<li class="der-slide">
+<a href="https://ahsenulamel.blogspot.com/2026/01/tan-eylemen-hocalar-yunus-emreyi-anlamak.html">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRCpjLsaF2tbwyiAKsQV4ZZPuEp7q8XSerq5PnsG2KzuCI-86unSq1Olyp7rqoAM5OHDl4Ptn3uhQwdrxVd4wEVqkuSFSQtVn2A_I0ZaHkO_DRGvV0QcTksnRAawQIb_NdIUI_m0kNOhRlwfkIKuAjzCbHuGGvbsWLLM-6y69CJTNptCOSfzhjAXSkWXw/s1600/yunus%20emre.png" />
+</a>
+<a class="der-title" href="https://ahsenulamel.blogspot.com/2026/01/tan-eylemen-hocalar-yunus-emreyi-anlamak.html">"TA'N EYLEMEN HOCALAR": YUNUS EMRE'Yİ ANLAMAK</a>
+</li>
+
+<li class="der-slide">
+<a href="https://ahsenulamel.blogspot.com/2026/03/evrim-teorisi-ve-aradigini-bulma.html">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjrzAdzZaZTK9UYMBrJuxR2Gu6or0Tsz093YqIztnQVNFrg_2HQFkNPCmN_ftNsMWOs_yaC_aB1SeHepDRg7s_IUGR8vUPpb4yvN7-HQh9dv2MEGALBZZtQ9T8oK0b0bpEH4C0MTTgeKSdsFQPfpnTvaFTRLJGxu1QDK4MRzdjha4S6YZ3ZTj_BcoaRdzY/s1600/yanl%C4%B1l%C4%B1k.png" />
+</a>
+<a class="der-title" href="https://ahsenulamel.blogspot.com/2026/03/evrim-teorisi-ve-aradigini-bulma.html">EVRİM TEORİSİ ve ARADIĞINI BULMA PSİKOLOJİSİ</a>
+</li>
+
+<li class="der-slide">
+<a href="https://ahsenulamel.blogspot.com/2026/03/73-firka-hadisi-ve-kardeslik-firkasi.html">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWcv7cdtNpPN9M53z330lFCH_aOcL9NbuJlji7UICctgG0D2_lCW77s7S0JpZ0QAAQ2XOTD3ZCIP9ymSO-OTwncn3mRDE0C85M6B6I3Vtt9-NlW4JQCIaZvfcCjJSRwHkWDmiKh4laMKXmSvysEKDm7Rh5uU8egFVIEH5STAqA8zUuSE6VKnG02tmlyGk/s1600/firkalar.png" />
+</a>
+<a class="der-title" href="https://ahsenulamel.blogspot.com/2026/03/73-firka-hadisi-ve-kardeslik-firkasi.html">73 FIRKA HADİSİ ve KARDEŞLİK FIRKASI</a>
+</li>
+
+<li class="der-slide">
+<a href="https://ahsenulamel.blogspot.com/2026/03/beyyine-suresi-ve-turnusol-kagidi.html">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEguZYC2l7w3VtNItiUJCkWIXSsMqgOEP9T6xS1nFUqRUmBXQK6-_u-OG9CQFRbB2tVm3IuMaKeqQJp1OVyZpmHElEiMxMA10GTWE8UMX_wn5-vIP0BERc5wzH_wTtWc6Q_6vzMn6okBZRLnCoJIWQ-FAbvezWB4EhWUcpVj-SThcQ69Nw9ODBpduLey38g/s1600/beyyine.png" />
+</a>
+<a class="der-title" href="https://ahsenulamel.blogspot.com/2026/03/beyyine-suresi-ve-turnusol-kagidi.html">BEYYİNE SURESİ ve "TURNUSOL KAĞIDI" OLAYLAR</a>
+</li>
+
+<li class="der-slide">
+<a href="https://ahsenulamel.blogspot.com/2016/08/sadece-kuran-ya-da-ne-kadar-kuran.html">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg6N4F1I3fRlFOoqAlr7LY8RbLR9KhTlAmjZmeHJEzmPThvu_2iEo0bk1h_-4QNc_X7D5ydJ1CyxNmbaweewuorE6U0HB2U40h2Ar70Qy7S6ZNIUIb622vvQ9173ikrH5P630vn_a9EVIKzr72gaMdYC1y6w6wy6eOVmuszBMoppnR8uQu_qmdQnq0Lp8Q/s1600/kuran.jpg" />
+</a>
+<a class="der-title" href="https://ahsenulamel.blogspot.com/2016/08/sadece-kuran-ya-da-ne-kadar-kuran.html">SADECE KUR'AN! ya da NE KADAR KUR'AN?</a>
+</li>
+
+</ul>
+</div>
+
+
+
+<script>
+(function(){
+
+const slider=document.getElementById("derSlider")
+const track=slider.querySelector(".der-slider-track")
+const slides=slider.querySelectorAll(".der-slide")
+const next=slider.querySelector(".der-next")
+const prev=slider.querySelector(".der-prev")
+
+let index=0
+const visible=3
+const total=slides.length
+
+function move(){
+const slideWidth=slides[0].offsetWidth+20
+track.style.transform="translateX(-"+(index*slideWidth)+"px)"
+}
+
+next.addEventListener("click",function(){
+if(index < total-visible){
+index++
+move()
+}
+})
+
+prev.addEventListener("click",function(){
+if(index>0){
+index--
+move()
+}
+})
+
+})();
+</script>

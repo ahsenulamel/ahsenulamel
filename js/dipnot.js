@@ -7,7 +7,7 @@
 
     var dipnotURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSkcEcw1y0bM3GCZtlK8Hq4HnvGR_mYyQ5dkFhTj2avYz1bzmc0nYvrGe0OfhkbgGA4woVsXWZnWRKy/pub?gid=263142270&single=true&output=csv";
 
-    var cacheKey = "ahsen_dipnot_cache_v1";
+    var cacheKey = "ahsen_dipnot_cache_v2";
     var cacheSuresi = 24 * 60 * 60 * 1000;
 
     var dipnotlar = {};
@@ -108,6 +108,9 @@
         var numaraIndex = basliklar.indexOf("numara");
         var aciklamaIndex = basliklar.indexOf("aciklama");
         var atifIndex = basliklar.indexOf("atif");
+        var kategoriIndex = basliklar.indexOf("kategori");
+        var linkAciklamaIndex = basliklar.indexOf("link_aciklamasi");
+        var linkIndex = basliklar.indexOf("link");
 
         if (
             numaraIndex === -1 ||
@@ -123,11 +126,26 @@
             var aciklama = (satirlar[i][aciklamaIndex] || "").trim();
             var atif = (satirlar[i][atifIndex] || "").trim();
 
+            var kategori = kategoriIndex !== -1
+                ? (satirlar[i][kategoriIndex] || "").trim()
+                : "";
+
+            var linkAciklamasi = linkAciklamaIndex !== -1
+                ? (satirlar[i][linkAciklamaIndex] || "").trim()
+                : "";
+
+            var link = linkIndex !== -1
+                ? (satirlar[i][linkIndex] || "").trim()
+                : "";
+
             if (numara && aciklama) {
 
                 sonuc[numara] = {
                     aciklama: aciklama,
-                    atif: atif
+                    atif: atif,
+                    kategori: kategori,
+                    linkAciklamasi: linkAciklamasi,
+                    link: link
                 };
 
             }
@@ -310,6 +328,9 @@
         kutu.appendChild(ust);
         kutu.appendChild(aciklama);
 
+
+        /* ATIF */
+
         if (veri.atif) {
 
             var cizgi = document.createElement("div");
@@ -326,6 +347,44 @@
 
             kutu.appendChild(cizgi);
             kutu.appendChild(atif);
+
+        }
+
+
+        /* DİPNOT BAĞLANTISI */
+
+        if (veri.linkAciklamasi && veri.link) {
+
+            try {
+
+                var url = new URL(veri.link);
+
+                if (
+                    url.protocol === "https:" ||
+                    url.protocol === "http:"
+                ) {
+
+                    var baglanti = document.createElement("a");
+
+                    baglanti.href = url.href;
+                    baglanti.textContent = veri.linkAciklamasi;
+                    baglanti.target = "_blank";
+                    baglanti.rel = "noopener noreferrer";
+
+                    baglanti.style.cssText =
+                        "display:inline-block;margin-top:10px;" +
+                        "color:#d00000;font-weight:bold;" +
+                        "text-decoration:underline;";
+
+                    kutu.appendChild(baglanti);
+
+                }
+
+            } catch (e) {
+
+                console.warn("Geçersiz dipnot bağlantısı:", veri.link);
+
+            }
 
         }
     }

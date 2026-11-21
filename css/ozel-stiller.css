@@ -58,6 +58,25 @@ nav {  margin-top: 0px; }
 }
 header .h:hover {  opacity: 0.80; }
 
+/* === DİPNOT İŞARETLERİ === */
+
+dip {
+    cursor: pointer;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+dip sup {
+    color: #2878b9;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+dip:hover sup {
+    color: #e06b27;
+}
 
 
 /* ------------------Yayınların Stilleri----------------- */

@@ -255,6 +255,21 @@
 
     });
 
+        /* SİTE İÇİ ARAMA */
+
+document.addEventListener("click", function (event) {
+
+    var hedef = event.target.closest("dic");
+
+    if (!hedef) return;
+
+    var kelime = hedef.textContent.trim();
+
+    if (!kelime) return;
+
+    window.location.href = "/search?q=" + encodeURIComponent(kelime);
+
+});
 
     /* BAŞLAT */
 
